@@ -107,15 +107,16 @@ P 1 F
 [27] A 27 @
 [28] G [SUB] 56 F
 [29] Z 0 F [STOP]
-[30] [ADR-2] P 32 @
+[30] [ADR-2] P 33 @
 [31] [LEN-2] P 8 F
-P 7 F
+P 0 F [skip]
+P 7 F [array]
 P 31 F
 P 1 F
-P 255 F          [SORTED ARRAY] [ADR = 27@ , LEN 8]
-P 156 F
+P 255 F          [unSORTED ARRAY] [ADR = 27@ , LEN 8]
+P 127 F
 P 1023 F
-P 11 F
+P 15 F
 P 4095 F
 
 EZ PF

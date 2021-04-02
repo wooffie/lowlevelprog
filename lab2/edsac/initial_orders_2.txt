@@ -63,7 +63,7 @@ G K  [ Директива, фиксация начального адреса]
 [50]   U 60 @
 [51]   S 59 @
 [52]   E [START]7 @
-[53]  [EXIT] T 62 @
+[53]  [EXIT] T 61 @
 [54]  [RET] E 0 F [EPILOG, RETURN FROM FUNC]
 [CONSTS]
 [55]  [TWO] P 1 F
@@ -90,7 +90,7 @@ G K
 [10] [SKIPS] P 0 F
 P 0 F
 P 0 F
-[13] [ARRAY]P 1023 F
+[ARRAY]P 1023 F
 P 511 F
 P 255 F
 P 127 F

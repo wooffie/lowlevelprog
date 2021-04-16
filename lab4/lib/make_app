@@ -1,0 +1,9 @@
+TARGET=main
+CC=riscv64-unknown-elf-gcc
+CFLAGS=-march=rv32i -mabi=ilp32 
+
+all: 
+		make -f make_lib
+		$(CC) $(CFLAGS) main.c libBubble.a -o $(TARGET)
+		del -f *.0 *.a
+		

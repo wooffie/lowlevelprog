@@ -1,0 +1,13 @@
+CC=riscv64-unknown-elf-gcc
+AR=riscv64-unknown-elf-ar
+CFLAGS=-march=rv32i -mabi=ilp32 
+
+all: lib
+
+lib: bubble.o
+		$(AR) -rsc libBubble.a bubble.o
+		del -f *.o
+bubble.o: bubble.c
+		$(CC) $(CFLAGS) -c bubble.c -o bubble.o
+		
+		

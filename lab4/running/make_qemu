@@ -1,0 +1,9 @@
+QM=qemu-system-riscv32
+CFLAGS=-machine virt -m 128M -gdb tcp::1234
+
+all:
+		$(QM) $(CFLAGS) -kernel a.out -bios none
+
+
+
+

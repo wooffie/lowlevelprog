@@ -1,52 +1,196 @@
-.text
-
-.global start
-
-start:
-
-la a1, length # a1 = adress of length
-lw a1, 0(a1) # a1 = length value
-slli a1, a1, 2 # a1 = length value << 2 (multiply by 4 for addresing of words)
-la a0, array  # a0 = array adress
-add a1, a1, a0 # a1 = end of array adress
-li a3, 1
-
-addi a1, a1, -4 # I-- for exit
-beq a1, a0,finish # if lenght = 1
-
-# now we can use a0
-
-#a0 = adress
-#a1 = end
-outter_loop:
-  beqz a3, finish # if = zero
-  li a3, 0# F , 1 if unsorted, 0 if sorted
-  la a0, array 
-  
-    inner_loop:
-      lw t2, 0(a0) # value of a[j]
-      lw t3, 4(a0) # value of a[j+1]
-    
-      bltu t2,t3,skip_swap # if a[j] < a[j+1] -> skip
-        li a3, 1     # F = 1 (array is unsorted)
-        sw t3, 0(a0) # \ S A
-        sw t2, 4(a0) # /  W P   
-        
-      skip_swap:
-        addi a0, a0, 4 # like j++
-        bltu a0, a1, inner_loop # if j < i -> continue
-  addi a1, a1, -4 # I-- for exit
-  # if start adress array's part equals last adress -> we cant take j+1 -> end of sorting
-   bne a1, a0,outter_loop
-
-finish:
-  li a0, 10 # calling x10 = 10 for exit
-  ecall # exit
-
-.rodata
-  length:
-    .word 10
-    
-.data
-array:
-    .word 5,1,51,42,56,0,12,23,42,4
+0
+14
+21
+32
+40
+43
+61
+99
+105
+114
+136
+156
+200
+298
+338
+347
+351
+365
+368
+399
+422
+426
+432
+440
+496
+520
+527
+572
+580
+631
+680
+715
+727
+763
+809
+888
+903
+924
+931
+934
+965
+994
+1001
+1049
+1056
+1060
+1063
+1066
+1076
+1083
+1096
+1123
+1137
+1140
+1155
+1160
+1190
+1240
+1285
+1315
+1317
+1356
+1446
+1451
+1491
+1504
+1509
+1530
+1566
+1570
+1572
+1581
+1612
+1619
+1662
+1671
+1699
+1714
+1758
+1787
+1794
+1798
+1819
+1822
+1823
+1884
+1889
+1897
+1906
+1927
+1931
+1934
+1942
+1945
+1958
+1978
+1982
+1984
+2018
+2027
+2033
+2049
+2074
+2085
+2201
+2202
+2211
+2222
+2234
+2251
+2265
+2268
+2285
+2293
+2296
+2299
+2309
+2324
+2337
+2342
+2349
+2417
+2422
+2466
+2484
+2486
+2489
+2493
+2528
+2530
+2551
+2567
+2570
+2575
+2578
+2588
+2599
+2638
+2664
+2670
+2681
+2685
+2688
+2696
+2715
+2761
+2762
+2763
+2771
+2788
+2820
+2853
+2861
+2916
+2931
+2944
+2980
+2997
+3026
+3033
+3039
+3045
+3047
+3078
+3083
+3122
+3145
+3156
+3214
+3233
+3280
+3285
+3288
+3289
+3301
+3310
+3311
+3331
+3387
+3389
+3426
+3440
+3451
+3454
+3487
+3497
+3558
+3614
+3629
+3647
+3650
+3712
+3714
+3778
+3823
+3863

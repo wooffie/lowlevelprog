@@ -1,5 +1,5 @@
-OUTPUT_FORMAT("elf64-littleriscv", "elf64-littleriscv",
-	      "elf64-littleriscv")
+OUTPUT_FORMAT("elf32-littleriscv", "elf32-littleriscv",
+	      "elf32-littleriscv")
 OUTPUT_ARCH(riscv)
 MEMORY
 {
@@ -186,11 +186,11 @@ SECTIONS
       .bss section disappears because there are no input sections.
       FIXME: Why do we need it? When there is no .bss section, we do not
       pad the .data section.  */
-   . = ALIGN(. != 0 ? 64 / 8 : 1);
+   . = ALIGN(. != 0 ? 32 / 8 : 1);
   }
-  . = ALIGN(64 / 8);
+  . = ALIGN(32 / 8);
   . = SEGMENT_START("ldata-segment", .);
-  . = ALIGN(64 / 8);
+  . = ALIGN(32 / 8);
   __BSS_END__ = .;
     __global_pointer$ = MIN(__SDATA_BEGIN__ + 0x800,
 		            MAX(__DATA_BEGIN__ + 0x800, __BSS_END__ - 0x800));

@@ -1,9 +1,0 @@
-CC=riscv64-unknown-elf-gdb
-
-all:
-		$(CC) main
-
-
-
-
-

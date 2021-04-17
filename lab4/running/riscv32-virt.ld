@@ -1,14 +1,3 @@
-GNU ld (SiFive Binutils 2.32.0-2019.05.3) 2.32
-  Supported emulations:
-   elf64lriscv
-   elf32lriscv
-using internal linker script:
-==================================================
-/* Script for -z combreloc: combine and sort reloc sections */
-/* Copyright (C) 2014-2019 Free Software Foundation, Inc.
-   Copying and distribution of this script, with or without modification,
-   are permitted in any medium without royalty provided the copyright
-   notice and this notice are preserved.  */
 OUTPUT_FORMAT("elf64-littleriscv", "elf64-littleriscv",
 	      "elf64-littleriscv")
 OUTPUT_ARCH(riscv)
@@ -250,6 +239,3 @@ SECTIONS
   .gnu.attributes 0 : { KEEP (*(.gnu.attributes)) }
   /DISCARD/ : { *(.note.GNU-stack) *(.gnu_debuglink) *(.gnu.lto_*) }
 }
-
-
-==================================================

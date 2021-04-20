@@ -1,12 +1,12 @@
-OUTPUT_FORMAT("elf32-littleriscv", "elf32-littleriscv",
-	      "elf32-littleriscv")
+OUTPUT_FORMAT("elf64-littleriscv", "elf64-littleriscv",
+	      "elf64-littleriscv")
 OUTPUT_ARCH(riscv)
 MEMORY
 {
     RAM (rwx)  : ORIGIN = 0x80000000, LENGTH = 128M
 }
 ENTRY(_start)
-SEARCH_DIR("/scratch/carsteng/freedom-tools-qemu-src/ocbj/x86_64-w64-mingw32/install/riscv64-unknown-elf-gcc-8bj/x86_64-w64-mingw32/install/riscv64-unknown-elf-gcc-8.2.0-2019.05.3-x86_64-w64-mingw32/riscv64-unknown-elf/lib");
+SEARCH_DIR("/scratch/carsteng/freedom-tools-qemu-src/obj/x86_64-w64-mingw32/install/riscv64-unknown-elf-gcc-8.2.0-2019.05.3-x86_64-w64-mingw32/riscv64-unknown-elf/lib");
 SECTIONS
 {
   /* Read-only sections, merged into text segment: */
@@ -186,11 +186,11 @@ SECTIONS
       .bss section disappears because there are no input sections.
       FIXME: Why do we need it? When there is no .bss section, we do not
       pad the .data section.  */
-   . = ALIGN(. != 0 ? 32 / 8 : 1);
+   . = ALIGN(. != 0 ? 64 / 8 : 1);
   }
-  . = ALIGN(32 / 8);
+  . = ALIGN(64 / 8);
   . = SEGMENT_START("ldata-segment", .);
-  . = ALIGN(32 / 8);
+  . = ALIGN(64 / 8);
   __BSS_END__ = .;
     __global_pointer$ = MIN(__SDATA_BEGIN__ + 0x800,
 		            MAX(__DATA_BEGIN__ + 0x800, __BSS_END__ - 0x800));

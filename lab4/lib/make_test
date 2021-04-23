@@ -1,0 +1,7 @@
+
+all:
+		gcc -c bubble.c bubble.h
+		ar rsc libBubble.a bubble.o
+		gcc -o test main.c -L. -lBubble
+		test
+		del -f *.o *.a *.gch

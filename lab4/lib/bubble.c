@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stddef.h>
 #include "bubble.h"
 
 void bubble_sort(unsigned *array, size_t size) {

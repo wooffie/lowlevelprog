@@ -1,7 +1,8 @@
 
 all:
-		gcc -c bubble.c bubble.h
+		gcc -c bubble.c
 		ar rsc libBubble.a bubble.o
 		gcc -o test main.c -L. -lBubble
 		test
-		del -f *.o *.a *.gch
+		del -f *.o *.a *.exe
+			

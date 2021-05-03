@@ -50,7 +50,7 @@ static void tree(char *input_file, char *output_file, bool type) {
 
     FILE *fin = fopen(input_file, "r");
     if (strcmp(input_file, "") == 0) {
-        printf("Print 1 node on 1 string like: key value");
+        printf("Print 1 node on 1 string like: key value\n");
         fin = stdin;
     }
     int x = 0;
@@ -85,7 +85,7 @@ static void insert(char *input_file, char *output_file, bool type) {
 
     FILE *fin = fopen(input_file, "r");
     if (strcmp(input_file, "") == 0) {
-        printf("Print 1 node on 1 string like: key value");
+        printf("Print 1 node on 1 string like: key value\n");
         fin = stdin;
     }
     int x = 0;
@@ -193,6 +193,3 @@ int main(int argc, char *argv[]) {
     return 0;
 
 }
-
-
-

@@ -37,6 +37,7 @@ static bool heapIsValid(heap *h) {
 
 
 static void TestHeapInit(CuTest *tc) {
+    printf("1) Heap init test\n");
     heap *h = heapInit(0);
     CuAssertIntEquals_Msg(tc, "Heap with data 0 is created!", 1, h->data);
 
@@ -47,9 +48,13 @@ static void TestHeapInit(CuTest *tc) {
 
 
 static void TestShiftUp(CuTest *tc) {
+    printf("2) Heap shift up test\n");
     heap *h = maxHeap(8);
     h->size = 4;
-    pair_heap p[4] = {8, 0, 7, 0, 4, 0, 6, 0}; // prepared heap
+    pair_heap p[4] = {{8, 0},
+                      {7, 0},
+                      {4, 0},
+                      {6, 0}}; // prepared heap
     for (size_t i = 0; i < sizeof(p) / sizeof(p[0]); i++) {
         h->array[i] = p[i];
     }
@@ -78,9 +83,13 @@ static void TestShiftUp(CuTest *tc) {
 }
 
 static void TestShiftDown(CuTest *tc) {
+    printf("3) Heap shift down test\n");
     heap *h = minHeap(8);
     h->size = 4;
-    pair_heap p[4] = {8, 0, 7, 0, 4, 0, 7, 0}; // prepared heap
+    pair_heap p[4] = {{8, 0},
+                      {7, 0},
+                      {4, 0},
+                      {7, 0}}; // prepared heap
     for (size_t i = 0; i < sizeof(p) / sizeof(p[0]); i++) {
         h->array[i] = p[i];
     }
@@ -110,6 +119,7 @@ static void TestShiftDown(CuTest *tc) {
 }
 
 static void TestHeapAdd(CuTest *tc) {
+    printf("4) Heap add test\n");
     heap *h = minHeap(2);
     heapAdd(h, (pair_heap) {10, 0});
     CuAssert(tc, "Heap is not valid!", heapIsValid(h));
@@ -131,6 +141,7 @@ static int cmp(const void *a, const void *b) {
 }
 
 static void TestHeapRoot(CuTest *tc) {
+    printf("5) Heap insert root test\n");
     heap *h = minHeap(16);
     key_heap array[10] = {23, 23, 42, 24, 22, 2, 42, 2222, 6464, 1};
     for (size_t i = 0; i < sizeof(array) / sizeof(array[0]); i++) {
@@ -147,8 +158,17 @@ static void TestHeapRoot(CuTest *tc) {
 }
 
 static void TestHeapArrays(CuTest *tc) {
-
-    pair_heap p[10] = {23, 0, 23, 0, 42, 0, 24, 0, 22, 0, 2, 0, 42, 0, 2222, 0, 6464, 0, 1, 0};
+    printf("6) Heap from arrays test\n");
+    pair_heap p[10] = {{23,   0},
+                       {23,   0},
+                       {42,   0},
+                       {24,   0},
+                       {22,   0},
+                       {2,    0},
+                       {42,   0},
+                       {2222, 0},
+                       {6464, 0},
+                       {1,    0}};
 
     heap *maxH = maxHeapArray(p, sizeof(p) / sizeof(p[0]));
     CuAssert(tc, "Max Heap is not valid!", heapIsValid(maxH));
@@ -162,7 +182,7 @@ static void TestHeapArrays(CuTest *tc) {
 
 
 static void HeapSortTest(struct CuTest *tc) {
-
+    printf("7) HeapSort test\n");
     for (size_t i = 0; i < 100; i++) {
         size_t array_size = rand() % 1000 + 1;
         key_heap *array_ex = (key_heap *) malloc(sizeof(key_heap) * array_size);
@@ -186,6 +206,7 @@ static void HeapSortTest(struct CuTest *tc) {
 
 
 static CuSuite *StrUtilGetSuite() {
+    printf("Tests:\n");
     CuSuite *suite = CuSuiteNew();
     SUITE_ADD_TEST(suite, TestHeapInit);
     SUITE_ADD_TEST(suite, TestShiftUp);
@@ -210,7 +231,7 @@ static void RunAllTests(void) {
     printf("%s\n", output->buffer);
 
     printf("Printing MAX heap example:\n");
-    size_t array_size = 32;
+    size_t array_size = 15;
     pair_heap *array = (pair_heap *) malloc(sizeof(pair_heap) * array_size);
     for (size_t j = 0; j < array_size; j++) {
         array[j] = (pair_heap) {rand() % 1000, rand() % 42};

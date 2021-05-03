@@ -69,8 +69,7 @@ void heapAdd(heap *h, pair_heap p) {
         h->data *= 2;
         h->array = (pair_heap *) realloc(h->array, h->data * sizeof(pair_heap));
     }
-    h->array[h->size] = p;
-    h->size++;
+    h->array[(h->size)++] = p;
     heapShiftUp(h, h->size - 1);
 }
 
@@ -142,11 +141,10 @@ void printBT(heap *h, char *prefix, size_t index, bool isLeft) {
     if (index < h->size) {
         printf("%s", prefix);
         printf("%s", isLeft ? "|-" : "\\-");
-        printf("%zu(%u)\n", h->array[index].key, h->array[index].value);
+        printf("%zu (%u)\n", h->array[index].key, h->array[index].value);
 
         char buff[256];
         snprintf(buff, sizeof(buff), "%s%s", prefix, isLeft ? "|   " : "    ");
-
         printBT(h, buff, index * 2 + 1, true);
         printBT(h, buff, index * 2 + 2, false);
     } else {

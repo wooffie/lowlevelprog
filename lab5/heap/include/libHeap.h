@@ -5,7 +5,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 
-typedef size_t key_heap;
+typedef int key_heap;
 typedef unsigned int value_heap;
 
 typedef struct {

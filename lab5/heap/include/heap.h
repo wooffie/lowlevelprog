@@ -6,11 +6,6 @@
 #include <stdbool.h>
 #include "libHeap.h"
 
-
-
-typedef size_t key_heap;
-typedef unsigned int value_heap;
-
 extern heap *heapInit(unsigned int start_data);
 
 extern void heapShiftUp(heap *h, size_t i);

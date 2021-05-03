@@ -14,7 +14,7 @@ clean:
 	$(RM) -f $(OBJS:.o=.d)
 
 
-CFLAGS= -std=c11 -Wno-pedantic-ms-format
+CFLAGS= -std=c11 -pedantic -Wall -Wextra
 
 INCLUDES+= -I../include
 

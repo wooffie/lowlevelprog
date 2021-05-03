@@ -16,7 +16,7 @@ all: $(NAME)
 	$(RM) -f $(OBJS:.o=.d)
 	$(RM) -f $(NAME)
 	
-CFLAGS= -std=c11 -pedantic -Wall -Wextra -Wno-pedantic-ms-format
+CFLAGS= -std=c11 -pedantic -Wall -Wextra
 
 INCLUDES+= -I../include
 

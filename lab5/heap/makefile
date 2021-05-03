@@ -15,7 +15,7 @@ uninstall:
 
 
 #-Wno-pedantic-ms-format в попытках избежать конфликтов из-за size_t
-CFLAGS= -std=c11 -pedantic -Wall -Wextra -Wno-pedantic-ms-format
+CFLAGS= -std=c11 -pedantic -Wall -Wextra
 
 # Включаемые файлы следует искать в каталоге "include"
 INCLUDES+= -I./include

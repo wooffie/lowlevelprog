@@ -14,7 +14,7 @@ static void sort(char *input_file, char *output_file) {
         fin = stdin;
     }
     int x;
-    x = fscanf(fin, "%zd", &tmp);
+    x = fscanf(fin, "%d", &tmp);
     while (x == 1) {
         if (size + 1 > data) {
             data *= 2;
@@ -22,7 +22,7 @@ static void sort(char *input_file, char *output_file) {
         }
         array[size] = tmp;
         size++;
-        x = fscanf(fin, "%zd", &tmp);
+        x = fscanf(fin, "%d", &tmp);
     }
     fclose(fin);
     heapSort(array, size);
@@ -32,7 +32,7 @@ static void sort(char *input_file, char *output_file) {
         fout = stdout;
     }
     for (size_t i = 0; i < size; i++) {
-        fprintf(fout, "%zd ", array[i]);
+        fprintf(fout, "%d ", array[i]);
     }
 
     fclose(fout);
@@ -56,10 +56,10 @@ static void tree(char *input_file, char *output_file, bool type) {
     int x = 0;
     key_heap tmp_key = 0;
     value_heap tmp_value = 0;
-    x = fscanf(fin, "%zd %u\n", &tmp_key, &tmp_value);
+    x = fscanf(fin, "%d %u\n", &tmp_key, &tmp_value);
     while (x == 2) {
         heapAdd(h, (pair_heap) {tmp_key, tmp_value});
-        x = fscanf(fin, "%zd %u\n", &tmp_key, &tmp_value);
+        x = fscanf(fin, "%d %u\n", &tmp_key, &tmp_value);
     }
     fclose(fin);
     printHeap(h);
@@ -91,14 +91,14 @@ static void insert(char *input_file, char *output_file, bool type) {
     int x = 0;
     key_heap tmp_key = 0;
     value_heap tmp_value = 0;
-    x = fscanf(fin, "%zd %u\n", &tmp_key, &tmp_value);
+    x = fscanf(fin, "%d %u\n", &tmp_key, &tmp_value);
     while (x == 2) {
         heapAdd(h, (pair_heap) {tmp_key, tmp_value});
-        x = fscanf(fin, "%zd %u\n", &tmp_key, &tmp_value);
+        x = fscanf(fin, "%d %u\n", &tmp_key, &tmp_value);
     }
     fclose(fin);
     pair_heap root = heapRoot(h);
-    printf("key=%zd value=%u was inserted\n", root.key, root.value);
+    printf("key=%d value=%u was inserted\n", root.key, root.value);
 
 
     FILE *fout = fopen(output_file, "w");
@@ -106,7 +106,7 @@ static void insert(char *input_file, char *output_file, bool type) {
         fout = stdout;
     }
     for (size_t i = 0; i < h->size; i++) {
-        fprintf(fout, "%zd %u\n", h->array[i].key, h->array[i].value);
+        fprintf(fout, "%d %u\n", h->array[i].key, h->array[i].value);
     }
     heapRemove(h);
     fclose(fout);
@@ -117,10 +117,10 @@ int main(int argc, char *argv[]) {
 
     char *output_file = "";
     char *input_file = "";
-    size_t output_arg = -1;
-    size_t input_arg = -1;
+    int output_arg = -1;
+    int input_arg = -1;
 
-    for (size_t i = 0; i < argc; i++) {
+    for (int i = 0; i < argc; i++) {
         if (strcmp(argv[i], "-o") == 0) {
             if (output_arg != -1) {
                 printf("ILLEGAL FORMAT\n");

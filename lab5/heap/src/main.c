@@ -75,7 +75,7 @@ static void tree(char *input_file, char *output_file, bool type) {
 
 }
 
-static void insert(char *input_file, char *output_file, bool type) {
+static void extract(char *input_file, char *output_file, bool type) {
     heap *h;
     if (type) {
         h = maxHeap(8);
@@ -98,7 +98,7 @@ static void insert(char *input_file, char *output_file, bool type) {
     }
     fclose(fin);
     pair_heap root = heapRoot(h);
-    printf("key=%d value=%u was inserted\n", root.key, root.value);
+    printf("key=%d value=%u was extracted\n", root.key, root.value);
 
 
     FILE *fout = fopen(output_file, "w");
@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
                        "If you use input from CMD print any letter in the end\n"
                        "Heap (-max|-min) tree [-i] [input file] [-o] [output file]\n"
                        "Print heap\n"
-                       "Heap (-max|-min) insert [-i] [input file] [-o] [output file]\n"
+                       "Heap (-max|-min) extract [-i] [input file] [-o] [output file]\n"
                        "Deleting max or min key in heap\n"
                 );
                 break;
@@ -185,8 +185,8 @@ int main(int argc, char *argv[]) {
 
     if (strcmp(argv[2], "tree") == 0) {
         tree(input_file, output_file, type);
-    } else if (strcmp(argv[2], "insert") == 0) {
-        insert(input_file, output_file, type);
+    } else if (strcmp(argv[2], "extract") == 0) {
+        extract(input_file, output_file, type);
     }
 
 

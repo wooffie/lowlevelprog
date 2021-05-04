@@ -140,8 +140,8 @@ void heapRemove(heap *h) {
 void printBT(heap *h, char *prefix, size_t index, bool isLeft) {
     if (index < h->size) {
         printf("%s", prefix);
-        printf("%s", isLeft ? "|-" : "\\-");
-        printf("%d (%u)\n", h->array[index].key, h->array[index].value);
+        printf("%s", isLeft ? "|_" : "\\_");
+        printf("%d (%u)_\n", h->array[index].key, h->array[index].value);
 
         char buff[256];
         snprintf(buff, sizeof(buff), "%s%s", prefix, isLeft ? "|   " : "    ");

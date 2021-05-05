@@ -2,8 +2,6 @@
 #ifndef HEAP_HEAP_H
 #define HEAP_HEAP_H
 
-#include <stddef.h>
-#include <stdbool.h>
 #include "libHeap.h"
 
 extern heap *heapInit(unsigned int start_data);

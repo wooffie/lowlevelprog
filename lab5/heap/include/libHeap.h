@@ -5,6 +5,9 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef int key_heap;
 typedef unsigned int value_heap;

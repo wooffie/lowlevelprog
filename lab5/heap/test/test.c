@@ -1,10 +1,10 @@
 #include "heap.h"
 #include "CuTest.h"
-#include <stdio.h>
-#include <malloc.h>
-#include <stdlib.h>
 
-// so trivial for easy checking =)
+// Very trivial for easy cheking
+/*
+ * A function that checks if the tree retains its properties
+ */
 static bool heapIsValid(heap *h) {
     for (size_t i = 0; i < h->size; i++) {
         size_t left = 2 * i + 1;
@@ -35,7 +35,9 @@ static bool heapIsValid(heap *h) {
     return true;
 }
 
-
+/*
+ * Internal function heapInit check
+ */
 static void TestHeapInit(CuTest *tc) {
     printf("1) Heap init test\n");
     heap *h = heapInit(0);
@@ -46,15 +48,18 @@ static void TestHeapInit(CuTest *tc) {
     heapRemove(h);
 }
 
-
+/*
+ * Popup elements check
+ */
 static void TestShiftUp(CuTest *tc) {
     printf("2) Heap shift up test\n");
     heap *h = maxHeap(8);
     h->size = 4;
+    // prepared heap
     pair_heap p[4] = {{8, 0},
                       {7, 0},
                       {4, 0},
-                      {6, 0}}; // prepared heap
+                      {6, 0}};
     for (size_t i = 0; i < sizeof(p) / sizeof(p[0]); i++) {
         h->array[i] = p[i];
     }
@@ -82,6 +87,9 @@ static void TestShiftUp(CuTest *tc) {
 
 }
 
+/*
+ * Screening check
+ */
 static void TestShiftDown(CuTest *tc) {
     printf("3) Heap shift down test\n");
     heap *h = minHeap(8);
@@ -118,6 +126,9 @@ static void TestShiftDown(CuTest *tc) {
 
 }
 
+/*
+ * Test of adding
+ */
 static void TestHeapAdd(CuTest *tc) {
     printf("4) Heap add test\n");
     heap *h = minHeap(2);
@@ -136,9 +147,10 @@ static void TestHeapAdd(CuTest *tc) {
     heapRemove(h);
 }
 
-static int cmp(const void *a, const void *b) {
-    return *(int *) a - *(int *) b;
-}
+
+/*
+ * Checking if the root is extracted correctly
+ */
 
 static void TestHeapRoot(CuTest *tc) {
     printf("5) Heap insert root test\n");
@@ -157,6 +169,9 @@ static void TestHeapRoot(CuTest *tc) {
 
 }
 
+/*
+ *  Building heap from array of nodes
+ */
 static void TestHeapArrays(CuTest *tc) {
     printf("6) Heap from arrays test\n");
     pair_heap p[10] = {{23,   0},
@@ -180,6 +195,16 @@ static void TestHeapArrays(CuTest *tc) {
     heapRemove(minH);
 }
 
+/*
+ * Comparator for quicksort
+ */
+static int cmp(const void *a, const void *b) {
+    return *(int *) a - *(int *) b;
+}
+
+/*
+ * Compare result of lib's quick sort and our heapSort
+ */
 
 static void HeapSortTestHeap(struct CuTest *tc) {
     printf("8) HeapSortHeap test\n");
@@ -200,7 +225,9 @@ static void HeapSortTestHeap(struct CuTest *tc) {
 
 }
 
-
+/*
+ * Adding all test to suite
+ */
 static CuSuite *StrUtilGetSuite() {
     printf("Tests:\n");
     CuSuite *suite = CuSuiteNew();
@@ -214,7 +241,9 @@ static CuSuite *StrUtilGetSuite() {
     return suite;
 }
 
-
+/*
+ * Run all tests
+ */
 static void RunAllTests(void) {
     CuString *output = CuStringNew();
     CuSuite *suite = CuSuiteNew();

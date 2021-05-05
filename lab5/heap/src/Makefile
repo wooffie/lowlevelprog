@@ -1,35 +1,33 @@
-.PHONY: all clean
+# Все файлы с исходным кодом на СИ будут перечисленны в данной переменной
 
+SRCS = ${wildcard *.c}
 
-OBJS= main.o
+# Объектные файлы необходимые для постройки библотеки
+# main.o не включается, потому что это файл для консольной программы
 
+OBJS = ${filter-out main.o,${SRCS:.c=.o}}
 
-NAME= ../heap.exe
-RM= del
+# Главный рецепт (т.к. первый)
+# Необходимо собрать библотеку, для этого нужны скопилированные объектные файлы
 
-all: $(NAME)
+lib$(NAME).a: $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^
 
-clean:
-	$(RM) -f $(OBJS)
-	$(RM) -f $(OBJS:.o=.d)
+# Рецепт для сборки программы, необходимо собрать библиотеку и мейн
+# Перемещает exe в корневую папку проекта для удобства
 
+$(NAME): main.o lib$(NAME).a
+	$(CC) $(CFLAGS) $^ -o $@
+	move $(NAME).exe ../
 
-CFLAGS= -std=c11 -pedantic -Wall -Wextra
-
-INCLUDES+= -I../include
-
-vpath %.h ../include 
-
-vpath %.c ./
-
-
-$(NAME): $(OBJS)
-	gcc $(CFLAGS) -o $(NAME) $(INCLUDES) $(OBJS) -L.. -lHeap
-	$(RM) -f $(OBJS)
-#	move $(NAME) ../
-
+# Основной рецепт для получения объектный файлов
+# Main.o будет получен, т.к. указан в зависимостях цели $(NAME)
 %.o: %.c
 	gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
+.PHONY: clean
 
--include $(OBJS:.o=.d)
+# Цель очистки от файлов полученных в ходе работы компилятора
+
+clean:
+	-$(RM) *.o *.a

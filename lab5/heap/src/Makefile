@@ -4,7 +4,7 @@
 OBJS= main.o
 
 
-NAME= heap.exe
+NAME= ../heap.exe
 RM= del
 
 all: $(NAME)
@@ -26,8 +26,7 @@ vpath %.c ./
 $(NAME): $(OBJS)
 	gcc $(CFLAGS) -o $(NAME) $(INCLUDES) $(OBJS) -L.. -lHeap
 	$(RM) -f $(OBJS)
-#	$(RM) -f $(OBJS:.o=.d)
-
+#	move $(NAME) ../
 
 %.o: %.c
 	gcc $(CFLAGS) $(INCLUDES) -c -o $@ $<

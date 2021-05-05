@@ -4,6 +4,7 @@
 
 #include <stddef.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef int key_heap;
 typedef unsigned int value_heap;
@@ -30,12 +31,12 @@ extern pair_heap heapRoot(heap *h);
 
 extern void heapRemove(heap *h);
 
-extern void heapSort(key_heap *array, size_t size);
+extern void heapSort(pair_heap *array, size_t size);
 
 extern heap *minHeapArray(pair_heap *p, size_t size);
 
 extern heap *maxHeapArray(pair_heap *p, size_t size);
 
-extern void printHeap(heap *h);
+extern void printHeap(heap *h, FILE* file);
 
 #endif

@@ -117,18 +117,13 @@ heap *maxHeapArray(pair_heap *p, size_t size) {
     return h;
 }
 
-void heapSort(key_heap *array, size_t size) {
-    pair_heap *array_pairs = (pair_heap *) malloc(sizeof(pair_heap) * size);
-    for (size_t i = 0; i < size; i++) {
-        array_pairs[i] = (pair_heap) {array[i], 0};
-    }
-    heap *h = minHeapArray(array_pairs, size);
-    for (size_t i = 0; i < size; i++) {
-        array[i] = heapRoot(h).key;
-    }
 
-    free(array_pairs);
-    heapRemove(h);
+void heapSort(pair_heap *array, size_t size) {
+    heap *h = maxHeapArray(array, size);
+	while(h->size != 0){
+		array[h->size - 1] = heapRoot(h);
+	}
+    free(h);
 }
 
 
@@ -137,21 +132,21 @@ void heapRemove(heap *h) {
     free(h);
 }
 
-void printBT(heap *h, char *prefix, size_t index, bool isLeft) {
+static void printBT(heap *h, FILE *file, char *prefix, size_t index, bool isLeft) {
     if (index < h->size) {
-        printf("%s", prefix);
-        printf("%s", isLeft ? "|_" : "\\_");
-        printf("%d (%u)_\n", h->array[index].key, h->array[index].value);
+        fprintf(file, "%s", prefix);
+        fprintf(file, "%s", isLeft ? "|_" : "\\_");
+        fprintf(file, "%d (%u)_\n", h->array[index].key, h->array[index].value);
 
         char buff[256];
         snprintf(buff, sizeof(buff), "%s%s", prefix, isLeft ? "|   " : "    ");
-        printBT(h, buff, index * 2 + 1, true);
-        printBT(h, buff, index * 2 + 2, false);
+        printBT(h, file, buff, index * 2 + 1, true);
+        printBT(h, file, buff, index * 2 + 2, false);
     } else {
-        printf("%s\n", prefix);
+        fprintf(file, "%s\n", prefix);
     }
 }
 
-void printHeap(heap *h) {
-    printBT(h, "", 0, false);
+void printHeap(heap *h, FILE *file) {
+    printBT(h, file, "", 0, false);
 }

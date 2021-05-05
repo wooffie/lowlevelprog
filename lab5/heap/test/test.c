@@ -181,25 +181,21 @@ static void TestHeapArrays(CuTest *tc) {
 }
 
 
-static void HeapSortTest(struct CuTest *tc) {
-    printf("7) HeapSort test\n");
-    for (size_t i = 0; i < 100; i++) {
-        size_t array_size = rand() % 1000 + 1;
-        key_heap *array_ex = (key_heap *) malloc(sizeof(key_heap) * array_size);
-        key_heap *array_ac = (key_heap *) malloc(sizeof(key_heap) * array_size);
-        for (size_t j = 0; j < array_size; j++) {
-            key_heap next = rand();
-            array_ex[j] = next;
-            array_ac[j] = next;
-        }
-
-        qsort(array_ex, array_size, sizeof(key_heap), cmp);
-        heapSort(array_ac, array_size);
-
-        for (size_t j = 0; j < array_size; j++) {
-            CuAssertIntEquals_Msg(tc, "HeapSort is invalid", array_ex[j], array_ac[j]);
-        }
-
+static void HeapSortTestHeap(struct CuTest *tc) {
+    printf("8) HeapSortHeap test\n");
+    pair_heap array_ex[5] = {{1, 0},
+                             {2, 0},
+                             {3, 0},
+                             {4, 0},
+                             {5, 0}};
+    pair_heap array_ac[5] = {{4, 0},
+                             {5, 0},
+                             {1, 0},
+                             {2, 0},
+                             {3, 0}};
+    heapSort(array_ac, 5);
+    for (size_t j = 0; j < 5; j++) {
+        CuAssertIntEquals_Msg(tc, "HeapSort is invalid", array_ex[j].key, array_ac[j].key);
     }
 
 }
@@ -214,7 +210,7 @@ static CuSuite *StrUtilGetSuite() {
     SUITE_ADD_TEST(suite, TestHeapAdd);
     SUITE_ADD_TEST(suite, TestHeapRoot);
     SUITE_ADD_TEST(suite, TestHeapArrays);
-    SUITE_ADD_TEST(suite, HeapSortTest);
+    SUITE_ADD_TEST(suite, HeapSortTestHeap);
     return suite;
 }
 
@@ -229,17 +225,6 @@ static void RunAllTests(void) {
     CuSuiteSummary(suite, output);
     CuSuiteDetails(suite, output);
     printf("%s\n", output->buffer);
-
-    printf("Printing MAX heap example:\n");
-    size_t array_size = 15;
-    pair_heap *array = (pair_heap *) malloc(sizeof(pair_heap) * array_size);
-    for (size_t j = 0; j < array_size; j++) {
-        array[j] = (pair_heap) {rand() % 1000, rand() % 42};
-    }
-    heap *h = maxHeapArray(array, array_size);
-    printHeap(h);
-    heapRemove(h);
-    free(array);
 }
 
 

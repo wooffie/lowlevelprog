@@ -13,7 +13,7 @@ RM= del
 all: $(NAME)
 	$(NAME)
 	$(RM) -f $(OBJS)
-	$(RM) -f $(OBJS:.o=.d)
+#	$(RM) -f $(OBJS:.o=.d)
 	$(RM) -f $(NAME)
 	
 CFLAGS= -std=c11 -pedantic -Wall -Wextra

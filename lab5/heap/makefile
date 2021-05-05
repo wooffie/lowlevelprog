@@ -28,7 +28,7 @@ vpath %.c src
 $(MYLIBNAME): $(OBJS)
 	$(AR) -rsc $@ $^
 	$(RM) -f $(OBJS)
-	$(RM) -f $(OBJS:.o=.d)	
+#	$(RM) -f $(OBJS:.o=.d)	
 
 # Построение объектных файлов
 %.o: %.c

@@ -146,7 +146,12 @@ static void TestHeapAdd(CuTest *tc) {
     CuAssert(tc, "Heap is not valid!", heapIsValid(h));
     heapRemove(h);
 }
-
+/*
+ * Comparator for quicksort
+ */
+static int cmp(const void *a, const void *b) {
+    return *(int *) a - *(int *) b;
+}
 
 /*
  * Checking if the root is extracted correctly
@@ -195,12 +200,7 @@ static void TestHeapArrays(CuTest *tc) {
     heapRemove(minH);
 }
 
-/*
- * Comparator for quicksort
- */
-static int cmp(const void *a, const void *b) {
-    return *(int *) a - *(int *) b;
-}
+
 
 /*
  * Compare result of lib's quick sort and our heapSort

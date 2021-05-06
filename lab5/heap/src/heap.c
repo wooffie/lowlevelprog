@@ -177,8 +177,11 @@ void heapSort(pair_heap *array, size_t size) {
  * Free allocated memory for Heap and Heap array
  */
 void heapRemove(heap *h) {
-    free(h->array);
-    free(h);
+	if (h) {
+		free(h->array);
+		free(h);
+	}
+
 }
 
 /*
@@ -198,7 +201,7 @@ static void printBT(heap *h, FILE *file, char *prefix, size_t index, bool isLeft
         fprintf(file, "%s\n", prefix);
     }
 }
-
+int sds;
 /*
  * Printing heap like tree, output in file or cmd
  */

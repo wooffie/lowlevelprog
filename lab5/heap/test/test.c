@@ -207,7 +207,7 @@ static void TestHeapArrays(CuTest *tc) {
  */
 
 static void HeapSortTestHeap(struct CuTest *tc) {
-    printf("8) HeapSortHeap test\n");
+    printf("7) HeapSortHeap test\n");
     pair_heap array_ex[5] = {{1, 0},
                              {2, 0},
                              {3, 0},

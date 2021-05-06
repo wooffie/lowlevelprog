@@ -201,7 +201,6 @@ static void printBT(heap *h, FILE *file, char *prefix, size_t index, bool isLeft
         fprintf(file, "%s\n", prefix);
     }
 }
-int sds;
 /*
  * Printing heap like tree, output in file or cmd
  */

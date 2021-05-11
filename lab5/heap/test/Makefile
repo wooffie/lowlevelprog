@@ -32,3 +32,4 @@ $(NAME): $(OBJS)
 
 clean:
 	$(RM) *.o
+	$(RM) $(NAME)
